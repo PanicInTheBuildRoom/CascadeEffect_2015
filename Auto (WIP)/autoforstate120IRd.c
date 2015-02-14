@@ -88,7 +88,7 @@ void Auto5()
 
 void Auto4()
 {
-	//playTone(5, 500);
+	playTone(5, 500);
 	nMotorEncoder(right) = 0;
 	while(nMotorEncoder(right) < 2300)
 	{
