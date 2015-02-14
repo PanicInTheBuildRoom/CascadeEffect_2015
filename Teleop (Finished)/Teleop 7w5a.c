@@ -250,6 +250,6 @@ task main()
 		}
 
 		servo[grabber] = grabberPos;
-		servo[incognito] = 0;
+		servo[incognito] = 150;
 	}
 }

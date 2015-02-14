@@ -17,6 +17,16 @@
 
 int AutoProg = 0;
 
+task lowerLift()
+{
+	while(nMotorEncoder(lift) > 0)
+	{
+		motor[lift] = -100;
+		EndTimeSlice();
+	}
+	motor[lift] = 0;
+}
+
 void Auto5()
 {
 	nMotorEncoder(right) = 0;
@@ -32,8 +42,8 @@ void Auto5()
 	nMotorEncoder(left) = 0;
 	while(nMotorEncoder(left) < 20)
 	{
-		motor[left] = 60;
-		motor[right] = 60;
+		motor[left] = 40;
+		motor[right] = 40;
 	}
 	wait1Msec(500);
 	nMotorEncoder(right) = 0;
@@ -73,11 +83,7 @@ void Auto5()
 	motor[left] = 0;
 	motor[right] = 0;
 	wait1Msec(300);
-	while(nMotorEncoder(lift) > 15000)
-	{
-		motor[lift] = -100;
-	}
-	motor[lift] = 0;
+	startTask(lowerLift);
 }
 
 void Auto4()
@@ -258,4 +264,5 @@ task main()
 	{
 		Auto0();
 	}
+	wait10Msec(1000);
 }
