@@ -99,7 +99,7 @@ void Auto4()
 	motor[right] = 0;
 	wait1Msec(500);
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) < 450)
+	while(nMotorEncoder(left) < 500)
 	{
 		motor[left] = 60;
 		motor[right] = 60;
@@ -148,7 +148,7 @@ void Auto4()
 void Auto0()
 {
 	nMotorEncoder(right) = 0;
-	while(nMotorEncoder(right) < 2650)
+	while(nMotorEncoder(right) < 1800)
 	{
 		motor[left] = -60;
 		motor[right] = 60;
@@ -164,7 +164,7 @@ void Auto0()
 	}
 	wait1Msec(500);
 	nMotorEncoder(right) = 0;
-	while(nMotorEncoder(right) > -2550)
+	while(nMotorEncoder(right) > -2500)
 	{
 		motor[left] = 50;
 		motor[right] = -50;
@@ -173,14 +173,14 @@ void Auto0()
 	motor[right] =0;
 	wait1Msec(500);
 	nMotorEncoder(lift) = 0;
-	while(nMotorEncoder(lift) <= 26100) //13 and 5 eigths //26100
+	while(!SensorValue(touch))
 	{
 		motor[lift] = 100;
 		nxtDisplayTextLine(3, "%d", nMotorEncoder(lift));
 	}
 	motor[lift] = 0;
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) < 425)
+	while(nMotorEncoder(left) < 700)
 	{
 		motor[left] = 40;
 		motor[right] = 40;
@@ -191,7 +191,8 @@ void Auto0()
 	motor[star] = 50;
 	wait10Msec(100);
 	motor[star] = 0;
-	while(nMotorEncoder(left) > 0)
+	startTask(lowerLift);
+	while(nMotorEncoder(left) > 300)
 	{
 		motor[left] = -40;
 		motor[right] = -40;
@@ -199,11 +200,7 @@ void Auto0()
 	motor[left] = 0;
 	motor[right] = 0;
 	wait10Msec(300);
-	while(nMotorEncoder(lift) > 5)
-	{
-		motor[lift] = -100;
-	}
-	motor[lift] = 0;
+
 }
 
 task main()
@@ -229,7 +226,7 @@ task main()
 	{
 		AutoProg = 1;
 	}
-	else if(SensorValue(IR) == 4)
+	else if(SensorValue(IR) == 4 || SensorValue(IR) == 3)
 	{
 		AutoProg = 2;
 	}
