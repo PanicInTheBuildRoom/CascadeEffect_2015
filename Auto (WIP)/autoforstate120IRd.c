@@ -90,7 +90,7 @@ void Auto4()
 {
 	//playTone(5, 500);
 	nMotorEncoder(right) = 0;
-	while(nMotorEncoder(right) < 2300)
+	while(nMotorEncoder(right) < 2100)
 	{
 		motor[left] = -60;
 		motor[right] = 60;
@@ -99,14 +99,14 @@ void Auto4()
 	motor[right] = 0;
 	wait1Msec(500);
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) < 300)
+	while(nMotorEncoder(left) < 450)
 	{
 		motor[left] = 60;
 		motor[right] = 60;
 	}
 	wait1Msec(500);
 	nMotorEncoder(right) = 0;
-	while(nMotorEncoder(right) > -1600)
+	while(nMotorEncoder(right) > -1500)
 	{
 		motor[left] = 50;
 		motor[right] = -50;
@@ -115,7 +115,7 @@ void Auto4()
 	motor[right] =0;
 	wait1Msec(500);
 	nMotorEncoder(lift) = 0;
-	while(nMotorEncoder(lift) <= 26000) //13 and 5 eigths
+	//while(nMotorEncoder(lift) <= 26000) //13 and 5 eigths
 	while(!SensorValue(touch))
 	{
 		motor[lift] = 100;
