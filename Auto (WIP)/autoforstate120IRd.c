@@ -17,6 +17,29 @@
 
 int AutoProg = 0;
 
+task playStarWars()
+{
+		playTone(695, 14); while(bSoundActive);
+	playTone(695, 14); while(bSoundActive);
+	playTone(695, 14); while(bSoundActive);
+	playTone(929, 83); while(bSoundActive);
+	playTone(1401, 83); while(bSoundActive);
+	playTone(1251, 14); while(bSoundActive);
+	playTone(1188, 14); while(bSoundActive);
+	playTone(1054, 14); while(bSoundActive);
+	playTone(1841, 83); while(bSoundActive);
+	playTone(1401, 41); while(bSoundActive);
+	playTone(1251, 14); while(bSoundActive);
+	playTone(1188, 14); while(bSoundActive);
+	playTone(1054, 14); while(bSoundActive);
+	playTone(1841, 83); while(bSoundActive);
+	playTone(1401, 41); while(bSoundActive);
+	playTone(1251, 14); while(bSoundActive);
+	playTone(1188, 14); while(bSoundActive);
+	playTone(1251, 14); while(bSoundActive);
+	playTone(1054, 55); while(bSoundActive);
+}
+
 task lowerLift()
 {
 	while(nMotorEncoder(lift) > 5)
@@ -47,7 +70,7 @@ void Auto5()
 	}
 	wait1Msec(500);
 	nMotorEncoder(right) = 0;
-	while(nMotorEncoder(right) > -400)
+	while(nMotorEncoder(right) > -450)
 	{
 		motor[left] = 40;
 		motor[right] = -40;
@@ -99,7 +122,7 @@ void Auto4()
 	motor[right] = 0;
 	wait1Msec(500);
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) < 500)
+	while(nMotorEncoder(left) < 550)
 	{
 		motor[left] = 60;
 		motor[right] = 60;
@@ -141,7 +164,7 @@ void Auto4()
 	}
 	motor[left] = 0;
 	motor[right] = 0;
-	wait10Msec(300);
+	wait1Msec(300);
 	startTask(lowerLift);
 }
 
@@ -164,7 +187,7 @@ void Auto0()
 	}
 	wait1Msec(500);
 	nMotorEncoder(right) = 0;
-	while(nMotorEncoder(right) > -2500)
+	while(nMotorEncoder(right) > -2700)
 	{
 		motor[left] = 50;
 		motor[right] = -50;
@@ -199,8 +222,7 @@ void Auto0()
 	}
 	motor[left] = 0;
 	motor[right] = 0;
-	wait10Msec(300);
-
+	wait1Msec(300);
 }
 
 task main()
@@ -259,6 +281,7 @@ task main()
 	{
 		Auto0();
 	}
+	startTask(playStarWars);
 	nMotorEncoder(left) = 0;
 	nMotorEncoder(right) = 0;
 	while(nMotorEncoder(left) < 500)
@@ -277,16 +300,16 @@ task main()
 	motor[left] = 0;
 	motor[right] = 0;
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) > -500)
+	while(nMotorEncoder(left) > -300)
 	{
-		motor[left] = -60;
-		motor[right] = 60;
+		motor[left] = -50;
+		motor[right] = 50;
 	}
 	motor[left] = 0;
 	motor[right] = 0;
 	motor[left] = 100;
 	motor[right] = 100;
-	wait1Msec(4000);
+	wait1Msec(3000);
 	motor[left] = 0;
 	motor[right] = 0;
 	wait10Msec(1000);
