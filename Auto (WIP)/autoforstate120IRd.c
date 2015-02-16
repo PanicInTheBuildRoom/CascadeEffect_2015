@@ -19,7 +19,7 @@ int AutoProg = 0;
 
 task playStarWars()
 {
-		playTone(695, 14); while(bSoundActive);
+	playTone(695, 14); while(bSoundActive);
 	playTone(695, 14); while(bSoundActive);
 	playTone(695, 14); while(bSoundActive);
 	playTone(929, 83); while(bSoundActive);
@@ -300,10 +300,29 @@ task main()
 	motor[left] = 0;
 	motor[right] = 0;
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) > -300)
+	if(AutoProg == 3)
 	{
-		motor[left] = -50;
-		motor[right] = 50;
+		while(nMotorEncoder(left) > -300)
+		{
+			motor[left] = -40;
+			motor[right] = 40;
+		}
+	}
+	else if (AutoProg == 2)
+	{
+		while(nMotorEncoder(left) > -325)
+		{
+			motor[left] = -30;
+			motor[right] = 30;
+		}
+	}
+	else if(AutoProg == 1)
+	{
+		while(nMotorEncoder(left) > -250)
+		{
+			motor[left] = -40;
+			motor[right] = 40;
+		}
 	}
 	motor[left] = 0;
 	motor[right] = 0;
