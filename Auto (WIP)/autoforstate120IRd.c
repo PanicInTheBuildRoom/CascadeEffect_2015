@@ -19,25 +19,25 @@ int AutoProg = 0;
 
 task playStarWars()
 {
-	playTone(695, 14); while(bSoundActive);
-	playTone(695, 14); while(bSoundActive);
-	playTone(695, 14); while(bSoundActive);
-	playTone(929, 83); while(bSoundActive);
-	playTone(1401, 83); while(bSoundActive);
-	playTone(1251, 14); while(bSoundActive);
-	playTone(1188, 14); while(bSoundActive);
-	playTone(1054, 14); while(bSoundActive);
-	playTone(1841, 83); while(bSoundActive);
-	playTone(1401, 41); while(bSoundActive);
-	playTone(1251, 14); while(bSoundActive);
-	playTone(1188, 14); while(bSoundActive);
-	playTone(1054, 14); while(bSoundActive);
-	playTone(1841, 83); while(bSoundActive);
-	playTone(1401, 41); while(bSoundActive);
-	playTone(1251, 14); while(bSoundActive);
-	playTone(1188, 14); while(bSoundActive);
-	playTone(1251, 14); while(bSoundActive);
-	playTone(1054, 55); while(bSoundActive);
+	playTone(695, 14); while(bSoundActive){}
+	playTone(695, 14); while(bSoundActive){}
+	playTone(695, 14); while(bSoundActive){}
+	playTone(929, 83); while(bSoundActive){}
+	playTone(1401, 83); while(bSoundActive){}
+	playTone(1251, 14); while(bSoundActive){}
+	playTone(1188, 14); while(bSoundActive){}
+	playTone(1054, 14); while(bSoundActive){}
+	playTone(1841, 83); while(bSoundActive){}
+	playTone(1401, 41); while(bSoundActive){}
+	playTone(1251, 14); while(bSoundActive){}
+	playTone(1188, 14); while(bSoundActive){}
+	playTone(1054, 14); while(bSoundActive){}
+	playTone(1841, 83); while(bSoundActive){}
+	playTone(1401, 41); while(bSoundActive){}
+	playTone(1251, 14); while(bSoundActive){}
+	playTone(1188, 14); while(bSoundActive){}
+	playTone(1251, 14); while(bSoundActive){}
+	playTone(1054, 55); while(bSoundActive){}
 }
 
 task lowerLift()
@@ -187,7 +187,7 @@ void Auto0()
 	}
 	wait1Msec(500);
 	nMotorEncoder(right) = 0;
-	while(nMotorEncoder(right) > -2700)
+	while(nMotorEncoder(right) > -2800)
 	{
 		motor[left] = 50;
 		motor[right] = -50;
