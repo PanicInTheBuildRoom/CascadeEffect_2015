@@ -1,9 +1,9 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  none)
 #pragma config(Sensor, S2,     IR,             sensorHiTechnicIRSeeker600)
 #pragma config(Sensor, S3,     touch,          sensorTouch)
-#pragma config(Motor,  mtr_S1_C1_1,     left,          tmotorTetrix, openLoop, reversed, driveLeft, encoder)
+#pragma config(Motor,  mtr_S1_C1_1,     left,          tmotorTetrix, PIDControl, reversed, driveLeft, encoder)
 #pragma config(Motor,  mtr_S1_C1_2,     star,          tmotorTetrix, openLoop, driveRight)
-#pragma config(Motor,  mtr_S1_C2_1,     right,         tmotorTetrix, openLoop, encoder)
+#pragma config(Motor,  mtr_S1_C2_1,     right,         tmotorTetrix, PIDControl, encoder)
 #pragma config(Motor,  mtr_S1_C2_2,     lift,          tmotorTetrix, openLoop, encoder)
 #pragma config(Servo,  srvo_S1_C3_1,    grabber,              tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_2,    incognito,            tServoStandard)
@@ -236,13 +236,18 @@ task main()
 	nMotorEncoder(lift) = 0;
 	nxtDisplayTextLine(1, "%d", nMotorEncoder(right));
 	nMotorEncoder(lift) = 0;
-	while(nMotorEncoder(right) <= 3750)
-	{
-		motor[left] = 40;
-		motor[right] = 40;
-	}
+
+	nMotorEncoderTarget[left] = 3750;
+	nMotorEncoderTarget[right] = 3750;
+
+	motor[left] = 40;
+	motor[right] = 40;
+
+	while(nMotorRunState(right) != runStateIdle || nMotorRunState(left) != runStateIdle) {}
+
 	motor[left] = 0;
 	motor[right] = 0;
+
 	wait1Msec(300);
 	if(SensorValue(IR) == 6 || SensorValue(IR) == 5)
 	{
@@ -257,11 +262,15 @@ task main()
 		AutoProg = 3;
 	}
 	wait1Msec(300);
-	while(nMotorEncoder(right) >= 2675)
-	{
-		motor[left] = -40;
-		motor[right] = -40;
-	}
+
+	nMotorEncoderTarget[left] = 2675;
+	nMotorEncoderTarget[right] = 2675;
+
+	motor[left] = -40;
+	motor[right] = -40;
+
+	while(nMotorRunState(right) != runStateIdle || nMotorRunState(left) != runStateIdle) {}
+
 	motor[left] = 0;
 	motor[right] = 0;
 	nxtDisplayTextLine(1, "%d", nMotorEncoder(right));
