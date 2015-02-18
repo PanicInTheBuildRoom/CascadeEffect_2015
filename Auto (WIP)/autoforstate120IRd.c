@@ -70,7 +70,7 @@ void Auto5()
 	}
 	wait1Msec(500);
 	nMotorEncoder(right) = 0;
-	while(nMotorEncoder(right) > -450)
+	while(nMotorEncoder(right) > -475)
 	{
 		motor[left] = 40;
 		motor[right] = -40;
@@ -87,7 +87,7 @@ void Auto5()
 	}
 	motor[lift] = 0;
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) < 375)
+	while(nMotorEncoder(left) < 400)
 	{
 		motor[left] = 40;
 		motor[right] = 40;
@@ -113,7 +113,7 @@ void Auto4()
 {
 	//playTone(5, 500);
 	nMotorEncoder(right) = 0;
-	while(nMotorEncoder(right) < 2100)
+	while(nMotorEncoder(right) < 2000)
 	{
 		motor[left] = -60;
 		motor[right] = 60;
@@ -122,7 +122,7 @@ void Auto4()
 	motor[right] = 0;
 	wait1Msec(500);
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) < 550)
+	while(nMotorEncoder(left) < 500)
 	{
 		motor[left] = 60;
 		motor[right] = 60;
@@ -146,7 +146,7 @@ void Auto4()
 	}
 	motor[lift] = 0;
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) < 300)
+	while(nMotorEncoder(left) < 600)
 	{
 		motor[left] = 40;
 		motor[right] = 40;
@@ -159,8 +159,8 @@ void Auto4()
 	motor[star] = 0;
 	while(nMotorEncoder(left) > 0)
 	{
-		motor[left] = -40;
-		motor[right] = -40;
+		motor[left] = -30;
+		motor[right] = -30;
 	}
 	motor[left] = 0;
 	motor[right] = 0;
@@ -236,7 +236,7 @@ task main()
 	nMotorEncoder(lift) = 0;
 	nxtDisplayTextLine(1, "%d", nMotorEncoder(right));
 	nMotorEncoder(lift) = 0;
-	while(nMotorEncoder(right) <= 2700)
+	while(nMotorEncoder(right) <= 3750)
 	{
 		motor[left] = 40;
 		motor[right] = 40;
@@ -244,20 +244,20 @@ task main()
 	motor[left] = 0;
 	motor[right] = 0;
 	wait1Msec(300);
-	if(SensorValue(IR) == 0)
+	if(SensorValue(IR) == 6 || SensorValue(IR) == 5)
 	{
 		AutoProg = 1;
 	}
-	else if(SensorValue(IR) == 4 || SensorValue(IR) == 3)
+	else if(SensorValue(IR) == 3 || SensorValue(IR) == 2)
 	{
 		AutoProg = 2;
 	}
-	else if(SensorValue(IR) == 5)
+	else if(SensorValue(IR) == 4)
 	{
 		AutoProg = 3;
 	}
 	wait1Msec(300);
-	while(nMotorEncoder(right) >= 2611)
+	while(nMotorEncoder(right) >= 2675)
 	{
 		motor[left] = -40;
 		motor[right] = -40;
@@ -292,7 +292,7 @@ task main()
 	motor[left] = 0;
 	motor[right] = 0;
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) < 400)
+	while(nMotorEncoder(left) < 600)
 	{
 		motor[left] = 40;
 		motor[right] = 40;
@@ -302,7 +302,7 @@ task main()
 	nMotorEncoder(left) = 0;
 	if(AutoProg == 3)
 	{
-		while(nMotorEncoder(left) > -300)
+		while(nMotorEncoder(left) > -275)
 		{
 			motor[left] = -40;
 			motor[right] = 40;
@@ -312,8 +312,8 @@ task main()
 	{
 		while(nMotorEncoder(left) > -325)
 		{
-			motor[left] = -30;
-			motor[right] = 30;
+			motor[left] = -40;
+			motor[right] = 40;
 		}
 	}
 	else if(AutoProg == 1)
