@@ -1,9 +1,10 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  none)
+#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     IR,             sensorHiTechnicIRSeeker600)
 #pragma config(Sensor, S3,     touch,          sensorTouch)
 #pragma config(Motor,  mtr_S1_C1_1,     left,          tmotorTetrix, PIDControl, reversed, driveLeft, encoder)
-#pragma config(Motor,  mtr_S1_C1_2,     star,          tmotorTetrix, openLoop, driveRight)
-#pragma config(Motor,  mtr_S1_C2_1,     right,         tmotorTetrix, PIDControl, encoder)
+#pragma config(Motor,  mtr_S1_C1_2,     star,          tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_1,     right,         tmotorTetrix, PIDControl, driveRight, encoder)
 #pragma config(Motor,  mtr_S1_C2_2,     lift,          tmotorTetrix, openLoop, encoder)
 #pragma config(Servo,  srvo_S1_C3_1,    grabber,              tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_2,    incognito,            tServoStandard)
@@ -225,17 +226,20 @@ void Auto0()
 	wait1Msec(300);
 }
 
+	int test1;
+
 task main()
 {
-	waitForStart();
+	//waitForStart();
 	servo[incognito] = 0;
 	motor[star] = 20;
 	wait1Msec(1000);
 	motor[star] = 0;
-	nMotorEncoder(right) = 0;
-	nMotorEncoder(lift) = 0;
 	nxtDisplayTextLine(1, "%d", nMotorEncoder(right));
 	nMotorEncoder(lift) = 0;
+
+	nMotorEncoder[left] = 0;
+	nMotorEncoder[right] = 0;
 
 	nMotorEncoderTarget[left] = 3750;
 	nMotorEncoderTarget[right] = 3750;
@@ -243,7 +247,7 @@ task main()
 	motor[left] = 40;
 	motor[right] = 40;
 
-	while(nMotorRunState(right) != runStateIdle || nMotorRunState(left) != runStateIdle) {}
+	while(nMotorRunState(right) != runStateIdle && nMotorRunState(left) != runStateIdle) {test1 = nMotorEncoder(left);}
 
 	motor[left] = 0;
 	motor[right] = 0;
@@ -293,45 +297,70 @@ task main()
 	startTask(playStarWars);
 	nMotorEncoder(left) = 0;
 	nMotorEncoder(right) = 0;
-	while(nMotorEncoder(left) < 500)
-	{
-		motor[left] = 60;
-		motor[right] = -60;
-	}
+
+	nMotorEncoderTarget[left] = 500;
+	nMotorEncoderTarget[right] = -500;
+
+	motor[left] = 60;
+	motor[right] = -60;
+
+	while(nMotorRunState[left] != runStateIdle || nMotorRunState[right] != runStateIdle) {}
+
 	motor[left] = 0;
 	motor[right] = 0;
+
 	nMotorEncoder(left) = 0;
-	while(nMotorEncoder(left) < 600)
-	{
-		motor[left] = 40;
-		motor[right] = 40;
-	}
+	nMotorEncoder(right) = 0;
+
+	nMotorEncoderTarget[left] = 600;
+	nMotorEncoderTarget[right] = 600;
+
+	motor[left] = 40;
+	motor[right] = 40;
+
+	while(nMotorRunState[left] != runStateIdle || nMotorRunState[right] != runStateIdle) {}
+
 	motor[left] = 0;
 	motor[right] = 0;
-	nMotorEncoder(left) = 0;
+
 	if(AutoProg == 3)
 	{
-		while(nMotorEncoder(left) > -275)
-		{
-			motor[left] = -40;
-			motor[right] = 40;
-		}
+		nMotorEncoder[left] = 0;
+		nMotorEncoder[right] = 0;
+
+		nMotorEncoderTarget[left] = -275;
+		nMotorEncoderTarget[right] = 275;
+
+		motor[left] = -40;
+		motor[right] = 40;
+
+		while (nMotorRunState[left] != runStateIdle || nMotorRunState[right] != runStateIdle) {}
 	}
 	else if (AutoProg == 2)
 	{
-		while(nMotorEncoder(left) > -325)
-		{
-			motor[left] = -40;
-			motor[right] = 40;
-		}
+		nMotorEncoder[left] = 0;
+		nMotorEncoder[right] = 0;
+
+		nMotorEncoderTarget[left] = -275;
+		nMotorEncoderTarget[right] = 275;
+
+		motor[left] = -40;
+		motor[right] = 40;
+
+		while (nMotorRunState[left] != runStateIdle || nMotorRunState[right] != runStateIdle) {}
 	}
 	else if(AutoProg == 1)
 	{
-		while(nMotorEncoder(left) > -250)
-		{
-			motor[left] = -40;
-			motor[right] = 40;
-		}
+		nMotorEncoder[left] = 0;
+		nMotorEncoder[right] = 0;
+
+		nMotorEncoderTarget[left] = -275;
+		nMotorEncoderTarget[right] = 275;
+
+		motor[left] = -40;
+		motor[right] = 40;
+
+		while (nMotorRunState[left] != runStateIdle || nMotorRunState[right] != runStateIdle) {}
 	}
 	motor[left] = 0;
 	motor[right] = 0;
