@@ -220,7 +220,7 @@ void Auto0()
 	{
 		motor[left] = -40;
 		motor[right] = -40;
-	}chaj
+	}
 	motor[left] = 0;
 	motor[right] = 0;
 	wait1Msec(300);
@@ -284,15 +284,11 @@ task main()
 	}
 	startTask(playStarWars);
 	nMotorEncoder(left) = 0;
-	nMotorEncoder(right) = 0;
-
-	nMotorEncoderTarget[left] = 500;
-	nMotorEncoderTarget[right] = -500;
 
 	motor[left] = 60;
 	motor[right] = -60;
 
-	while(nMotorRunState[left] != runStateIdle || nMotorRunState[right] != runStateIdle) {}
+	while(nMotorEncoder(left) < 500) {}
 
 	motor[left] = 0;
 	motor[right] = 0;
@@ -324,16 +320,12 @@ task main()
 	}
 	else if(AutoProg == 1)
 	{
-		nMotorEncoder[left] = 0;
-		nMotorEncoder[right] = 0;
-
-		nMotorEncoderTarget[left] = -275;
-		nMotorEncoderTarget[right] = 275;
+		nMotorEncoder(right) = 0;
 
 		motor[left] = -40;
 		motor[right] = 40;
 
-		while (nMotorRunState[left] != runStateIdle || nMotorRunState[right] != runStateIdle) {}
+		while(nMotorEncoder(right) < 275) {}
 	}
 	motor[left] = 0;
 	motor[right] = 0;
