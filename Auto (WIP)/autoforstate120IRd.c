@@ -2,15 +2,9 @@
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     IR,             sensorHiTechnicIRSeeker600)
 #pragma config(Sensor, S3,     touch,          sensorTouch)
-<<<<<<< HEAD
-#pragma config(Motor,  mtr_S1_C1_1,     left,          tmotorTetrix, PIDControl, reversed, driveLeft, encoder)
-#pragma config(Motor,  mtr_S1_C1_2,     star,          tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C2_1,     right,         tmotorTetrix, PIDControl, driveRight, encoder)
-=======
 #pragma config(Motor,  mtr_S1_C1_1,     left,          tmotorTetrix, openLoop, reversed, driveLeft, encoder)
 #pragma config(Motor,  mtr_S1_C1_2,     star,          tmotorTetrix, openLoop, driveRight)
 #pragma config(Motor,  mtr_S1_C2_1,     right,         tmotorTetrix, openLoop, encoder)
->>>>>>> parent of ebe4e08... PID
 #pragma config(Motor,  mtr_S1_C2_2,     lift,          tmotorTetrix, openLoop, encoder)
 #pragma config(Servo,  srvo_S1_C3_1,    grabber,              tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_2,    incognito,            tServoStandard)
@@ -243,26 +237,11 @@ task main()
 	motor[star] = 0;
 	nxtDisplayTextLine(1, "%d", nMotorEncoder(right));
 	nMotorEncoder(lift) = 0;
-<<<<<<< HEAD
-
-	nMotorEncoder[left] = 0;
-	nMotorEncoder[right] = 0;
-
-	nMotorEncoderTarget[left] = 3750;
-	nMotorEncoderTarget[right] = 3750;
-
-	motor[left] = 40;
-	motor[right] = 40;
-
-	while(nMotorRunState(right) != runStateIdle && nMotorRunState(left) != runStateIdle) {test1 = nMotorEncoder(left);}
-
-=======
 	while(nMotorEncoder(right) <= 3750)
 	{
 		motor[left] = 40;
 		motor[right] = 40;
 	}
->>>>>>> parent of ebe4e08... PID
 	motor[left] = 0;
 	motor[right] = 0;
 	wait1Msec(300);
