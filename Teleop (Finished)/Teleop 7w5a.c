@@ -177,10 +177,15 @@ task main()
 			tempstar = false;
 		}
 
-		if(joy1Btn(11) && joy1Btn(12))
+		if(joy1Btn(5) && joy1Btn(6))
 		{
 			lefttemp = 100;
 			righttemp = 100;
+		}
+		else if(joy1Btn(7) && joy1Btn(8))
+		{
+			lefttemp = -100;
+			righttemp = -100;
 		}
 		else
 		{
